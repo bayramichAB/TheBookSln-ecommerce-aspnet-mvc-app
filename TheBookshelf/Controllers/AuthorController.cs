@@ -43,7 +43,6 @@ namespace TheBookshelf.Controllers
             return RedirectToAction("Authors");
         }
 
-        [AllowAnonymous]
         public ViewResult AuthorDetails(int authorId) => View(repository.Authors.FirstOrDefault(a=>a.AuthorID==authorId));
 
     }
