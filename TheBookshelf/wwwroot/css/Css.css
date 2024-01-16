@@ -1,0 +1,13 @@
+﻿.product-card__title {
+    display: -webkit-box;
+    box-sizing: content-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.input-validation-error {
+    border-color: red;
+    background-color: #fee;
+}
+

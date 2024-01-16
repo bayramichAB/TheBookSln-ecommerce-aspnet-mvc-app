@@ -1,0 +1,64 @@
+﻿@model Book
+
+@{
+    ViewData["Title"] = "Book details";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model?.Name
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model?.img" width="100%" alt="@Model?.Name">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <b>Description:</b> <p class="card-text">  @Model?.Description</p>
+                        <p class="card-text">
+                            <b>Author: </b>
+                            <a asp-controller="Author" asp-action="AuthorDetails" asp-route-authorId="@Model?.AuthorID">
+                                @Model?.Author!.Name
+                            </a>
+                        </p>
+
+                         <p class="card-text"><b> Pages: </b>@Model?.Pages</p>
+
+                        <p class="card-text"><b> Category: </b>@Model?.Category!.Name</p>
+
+                        <p class="card-text"> <b>Date: </b> @Model?.Date.ToString("d")</p>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer">
+                        <p class="card-text">
+                       
+                            <form id="@Model?.BookID" asp-page="/Cart" method="post">
+                                <input type="hidden" asp-for="BookID" />
+                                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                
+                                <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                    Back to List
+                                </a>
+                                <span>
+                                    <button type="submit" class="btn btn-success pull-right">
+                                        Add To Cart
+                                    </button>
+                                </span>
+                            </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

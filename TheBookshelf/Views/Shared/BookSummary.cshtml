@@ -1,0 +1,53 @@
+﻿@model Book
+
+<div class="col-md-6 col-xs-6">
+<div class="card mb-1 w-70 h-100">
+    <div class="row  g-0">
+        <div class="col-md-4">
+                <img src="@Model.img" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                    <h5 class="product-card__title">@Model.Name</h5>
+                <div class="card-text">Available:@(Model?.Available == true ? " yes" : " no")</div>
+                <div class="card-text">Published date: @Model?.Date.ToString("d")</div>
+
+                    <a asp-controller="Author" asp-action="AuthorDetails" asp-route-authorId="@Model?.AuthorID" >
+                       <div class="product-card__title">@Model?.Author!.Name</div>
+                    </a>
+
+                <span class="badge rounded-pill bg-primary text-white mb-1">
+                        <small>@Model?.Price.ToString("c")</small>
+                </span>
+
+
+            </div>
+                <div class="product-card__footer" >
+                    
+                    <form id="@Model?.BookID" asp-page="/Cart" method="post">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-auto">
+                    <input type="hidden" asp-for="BookID" />
+                    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
+                    <span class="card-text p-1">
+                        <button type="submit" class="btn btn-success">
+                            Add To Cart
+                        </button>
+                    </span>
+                    </div>
+                    <div class="col-auto">
+                       <a class="btn btn-outline-primary " asp-controller="Home" asp-action="Details" asp-route-bookId="@Model!.BookID">
+                          Details
+                       </a>
+                    </div>
+                    </div>
+                </form>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+

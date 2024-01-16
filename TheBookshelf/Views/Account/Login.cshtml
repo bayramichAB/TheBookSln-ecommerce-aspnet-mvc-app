@@ -1,0 +1,48 @@
+﻿@model LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width"/>
+        <title>TheBookshelf</title>
+        <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+<body>
+    <div class="bg-dark text-white p-2">
+        <span class="navbar-brand ml-2">TheBookshelf</span>
+    </div>
+    
+   
+    <div class="m-1 p-1">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+        <form asp-action="Login" asp-controller="Account" method="post" style="width:-webkit-fit-content" >
+            <input type="hidden"  />
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button class="btn btn-primary mt-2" type="submit">Log In</button>
+            <a class="btn btn-outline-primary mt-2 " asp-controller="Account" asp-action="Register">
+                Register
+            </a>
+        </form>
+
+        
+    </div>
+    
+</body>
+</html>

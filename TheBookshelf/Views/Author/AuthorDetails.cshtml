@@ -1,0 +1,41 @@
+﻿@model Author
+
+@{
+    ViewData["Title"] = "Author details";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model?.Name
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <b>About author: </b>
+                        <p class="card-text">  @Model?.Biography</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="card-footer">
+                        <p class="card-text">
+                           <a class="btn btn-outline-primary float-right" asp-controller="Home" asp-action="Index">
+                              Back to List
+                           </a>
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

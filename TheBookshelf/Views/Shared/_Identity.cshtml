@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> userManager;
+
+@if (!User.Identity!.IsAuthenticated)
+{
+    <a class="btn btn-outline-success" asp-controller="Account" asp-action="Login"> Log in </a>
+
+    <a class="btn btn-outline-primary mx-2" asp-controller="Account" asp-action="Register"> Register </a>
+}
+else
+{
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+            <a class="btn btn-outline-success dropdown-toggle" id="profile-btn" role="button" data-toggle="dropdown" aria-expanded="false">
+                Hello @userManager.GetUserName(User)
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="profile-btn">
+
+                <li>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Edit" asp-route-id="@userManager.GetUserId(User)"> Profile </a>
+                </li>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a class="dropdown-item" asp-controller="Order" asp-action="List"> Orders </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="Books"> Books </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" asp-controller="Account" asp-action="Users"> Users </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" asp-controller="Author" asp-action="Authors"> Authors </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" asp-controller="Category" asp-action="Categories"> Categories </a>
+                    </li>
+                }
+            </ul>
+        </li>
+    </ul>
+    
+    <form asp-controller="Account" asp-action="Logout">
+        <button class="btn btn-outline-danger mx-2">
+            <i class="bi bi-box-arrow-in-right"></i> Log out
+        </button>
+    </form>
+    
+}
